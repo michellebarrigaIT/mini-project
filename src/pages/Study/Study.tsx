@@ -1,7 +1,11 @@
+import ToggleButton from "../../components/ToggleButton/ToggleButton"
 
 function Study() {
   return (
-    <div>Study</div>
+    <div>
+      <h1>Study Mode</h1>
+      <ToggleButton/>
+    </div>
   )
 }
 
