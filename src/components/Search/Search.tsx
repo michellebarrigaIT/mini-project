@@ -1,0 +1,29 @@
+import './Search.scss';
+
+function Search({
+    q,
+    setQ,
+    topic,
+    setTopic,
+    topics,
+}: {
+    q: string;
+    setQ: (s: string) => void;
+    topic: string | 'all';
+    setTopic: (t: string | 'all') => void;
+    topics: string[];
+}) {
+    return (
+        <div className="search">
+            <input placeholder="Search question or answer..." value={q} onChange={(e) => setQ(e.target.value)} />
+            <select value={topic} onChange={(e) => setTopic(e.target.value as any)}>
+                <option value="all">All topics</option>
+                {topics.map((t) => (
+                    <option key={t} value={t}>{t}</option>
+                ))}
+            </select>
+        </div>
+    );
+}
+
+export default Search;

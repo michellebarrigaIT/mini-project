@@ -1,0 +1,45 @@
+@use "../../assets/styles/variables.scss" as variable;
+
+.search {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    color: variable.$text-color;
+    background-color: variable.$bg-color-card;
+    border: 1px solid variable.$border-color;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    input {
+        flex: 1;
+        border: none;
+        outline: none;
+        padding: 10px;
+        font-size: 1rem;
+        background-color: transparent;
+        color: variable.$text-color;
+
+        &::placeholder {
+            color: variable.$secondary-text-color;
+        }
+    }
+    
+    button {
+        background-color: variable.$btn-color;
+        color: variable.$text-color;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: variable.$btn-color-hover;
+        }
+    }
+}
