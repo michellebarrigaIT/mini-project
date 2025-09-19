@@ -1,4 +1,4 @@
-import './App.css'
+import './App.scss'
 import { Route, Routes } from 'react-router-dom'
 import NotFound from './pages/NotFound/NotFound'
 import Dashboard from './pages/Dashboard/Dashboard'

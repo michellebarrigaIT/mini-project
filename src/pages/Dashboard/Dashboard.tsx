@@ -3,6 +3,7 @@ import FlashcardForm from "../../components/FlashcardForm/FlashcardForm";
 import FlashcardList from "../../components/FlashcardList/FlashcardList";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import type { Flashcard } from "../../types/Flashcard";
+import "./Dashboard.scss";
 
 function Dashboard() {
   const [flashcards, setFlashcards] = useLocalStorage<Flashcard[]>("flashcards_v1", []);
@@ -11,12 +12,10 @@ function Dashboard() {
 
   const addOrUpdateCard = (card: Omit<Flashcard, "id"> & { id?: string }) => {
     if (card.id) {
-      // Update existing
       setFlashcards((prev) =>
         prev.map((c) => (c.id === card.id ? { ...c, ...card } : c))
       );
     } else {
-      // Add new
       const newCard: Flashcard = { ...card, id: crypto.randomUUID() };
       setFlashcards((prev) => [newCard, ...prev]);
     }

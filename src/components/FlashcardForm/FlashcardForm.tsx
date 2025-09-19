@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Flashcard } from "../../types/Flashcard";
+import "./FlashcardForm.scss";
 
 type FlashcardFormProps = {
     initial?: Partial<Flashcard>;
@@ -57,7 +58,7 @@ function FlashcardForm({ initial = {}, onSave, onCancel }: FlashcardFormProps) {
 
             <label>
                 Color tag
-                <input type="color" value={color} onChange={(e) => setColor(e.target.value)} />
+                <input className="color" type="color" value={color} onChange={(e) => setColor(e.target.value)} />
             </label>
 
             <div className="form-actions">

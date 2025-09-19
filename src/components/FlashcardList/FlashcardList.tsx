@@ -1,4 +1,6 @@
 import type { Flashcard } from "../../types/Flashcard";
+import FlashcardCard from "../FlashcardCard/FlashcardCard";
+import "./FlashcardList.scss"
 
 function FlashcardList({
     cards,
@@ -14,22 +16,11 @@ function FlashcardList({
     view?: 'grid' | 'list';
     }) {
     return (
-    <div className={`flashcard-list ${view}`}>
-        {cards.map((c) => (
-            <div key={c.id} className={`flashcard ${c.learned ? 'learned' : ''}`} style={{ borderColor: c.color }}>
-                <div className="flashcard-content">
-                    <h3>{c.question}</h3>
-                    <p>{c.answer}</p>
-                    <span className="topic">{c.topic}</span>
-                </div>
-                <div className="flashcard-actions">
-                    <button onClick={() => onToggleLearned(c.id)}>{c.learned ? 'Unmark Learned' : 'Mark as Learned'}</button>
-                    <button onClick={() => onEdit(c)}>Edit</button>
-                    <button onClick={() => onDelete(c.id)}>Delete</button>
-                </div>
-            </div>
-        ))}
-    </div>
+        <div className={`flashcard-list ${view}`}>
+            {cards.map((c) => (
+            <FlashcardCard key={c.id} card={c} onToggleLearned={onToggleLearned} onEdit={onEdit} onDelete={onDelete} />
+            ))}
+        </div>
     );
 }
 
