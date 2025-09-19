@@ -6,6 +6,7 @@ import type { Flashcard } from "../../types/Flashcard";
 import "./Dashboard.scss";
 import Search from "../../components/Search/Search";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
+import ToggleButton from "../../components/ToggleButton/ToggleButton";
 
 function Dashboard() {
     const [flashcards, setFlashcards] = useLocalStorage<Flashcard[]>("flashcards", []);
@@ -61,6 +62,7 @@ function Dashboard() {
 
     return (
         <div className="dashboard">
+            <ToggleButton/>
             <h1>Flashcards Dashboard</h1>
             <div className="dashboard-controls">
                 <button onClick={() => { setShowForm(true); setEditing(null); }}>

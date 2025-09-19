@@ -1,0 +1,24 @@
+@use "../../assets/styles/variables.scss" as variable;
+
+.toggle-button {
+    border: 1px solid black;
+    border-radius: 50px;
+    background-color: variable.$btn-color;
+    width: 15vw;
+    height: 4vh;
+    display: flex;
+    justify-content: space-between;
+
+    button {
+        flex: 1;
+        border-radius: 50px;
+        border: none;
+        background: transparent;
+        color: variable.$text-color;
+        cursor: pointer;
+    }
+
+    .active {
+        background-color: variable.$btn-color-hover;
+    }
+}
