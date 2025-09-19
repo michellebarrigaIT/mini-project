@@ -1,4 +1,7 @@
+@use "../../assets/styles/variables.scss" as variable;
+
 .not-found {
     text-align: center;
     margin-top: 50px;
+    color: variable.$text-color;
 }

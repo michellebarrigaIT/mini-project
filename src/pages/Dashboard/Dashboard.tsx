@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import FlashcardForm from "../../components/FlashcardForm/FlashcardForm";
 import FlashcardList from "../../components/FlashcardList/FlashcardList";
 import useLocalStorage from "../../hooks/useLocalStorage";
@@ -8,25 +8,22 @@ import Search from "../../components/Search/Search";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 
 function Dashboard() {
-    const [flashcards, setFlashcards] = useLocalStorage<Flashcard[]>("flashcards_v1", []);
+    const [flashcards, setFlashcards] = useLocalStorage<Flashcard[]>("flashcards", []);
     const [showForm, setShowForm] = useState(false);
     const [editing, setEditing] = useState<Flashcard | null>(null);
-    const [q, setQ] = useState("");
+    const [toSearch, setToSearch] = useState("");
     const [topicFilter, setTopicFilter] = useState<string | 'all'>('all');
 
-    const topics = useMemo(() => {
-        const set = new Set(flashcards.map(c => c.topic || "General"));
-        return Array.from(set);
-    }, [flashcards]);
+    const topics = Array.from(new Set(flashcards.map(flashcard => flashcard.topic || "General")));
 
     const addOrUpdateCard = (card: Omit<Flashcard, "id"> & { id?: string }) => {
         if (card.id) {
-        setFlashcards((prev) =>
-            prev.map((c) => (c.id === card.id ? { ...c, ...card } : c))
-        );
+            setFlashcards((prev) =>
+                prev.map((flashcard) => (flashcard.id === card.id ? { ...flashcard, ...card } : flashcard))
+            );
         } else {
-        const newCard: Flashcard = { ...card, id: crypto.randomUUID() };
-        setFlashcards((prev) => [newCard, ...prev]);
+            const newCard: Flashcard = { ...card, id: crypto.randomUUID() };
+            setFlashcards((prev) => [newCard, ...prev]);
         }
         setShowForm(false);
         setEditing(null);
@@ -34,13 +31,13 @@ function Dashboard() {
 
     const toggleLearned = (id: string) => {
         setFlashcards((prev) =>
-        prev.map((c) => (c.id === id ? { ...c, learned: !c.learned } : c))
+            prev.map((flashcard) => (flashcard.id === id ? { ...flashcard, learned: !flashcard.learned } : flashcard))
         );
     };
 
     const deleteCard = (id: string) => {
         if (confirm("Are you sure you want to delete this card?")) {
-        setFlashcards((prev) => prev.filter((c) => c.id !== id));
+            setFlashcards((prev) => prev.filter((flashcard) =>flashcard.id !== id));
         }
     };
 
@@ -49,52 +46,52 @@ function Dashboard() {
         setShowForm(true);
     };
 
-    const filteredCards = flashcards.filter(c => {
+    const filteredCards = flashcards.filter(flashcard => {
         const matchesQ =
-            !q.trim() ||
-            c.question.toLowerCase().includes(q.toLowerCase()) ||
-            c.answer.toLowerCase().includes(q.toLowerCase());
-        const matchesTopic = topicFilter === 'all' || c.topic === topicFilter;
+            !toSearch.trim() ||
+            flashcard.question.toLowerCase().includes(toSearch.toLowerCase()) ||
+            flashcard.answer.toLowerCase().includes(toSearch.toLowerCase());
+        const matchesTopic = topicFilter === 'all' || flashcard.topic === topicFilter;
         return matchesQ && matchesTopic;
     });
 
     const learnedRatio = flashcards.length
-        ? (flashcards.filter(c => c.learned).length / flashcards.length) * 100
+        ? (flashcards.filter(flashcard => flashcard.learned).length / flashcards.length) * 100
         : 0;
 
     return (
         <div className="dashboard">
-        <h1>Flashcards Dashboard</h1>
-        <div className="dashboard-controls">
-            <button onClick={() => { setShowForm(true); setEditing(null); }}>
-            + Add Flashcard
-            </button>
+            <h1>Flashcards Dashboard</h1>
+            <div className="dashboard-controls">
+                <button onClick={() => { setShowForm(true); setEditing(null); }}>
+                    + Add Flashcard
+                </button>
 
-            <Search
-                q={q}
-                setQ={setQ}
-                topic={topicFilter}
-                setTopic={setTopicFilter}
-                topics={topics}
+                <Search
+                    toSearch={toSearch}
+                    setToSearch={setToSearch}
+                    topic={topicFilter}
+                    setTopic={setTopicFilter}
+                    topics={topics}
+                />
+            </div>
+
+            <ProgressBar value={learnedRatio} />
+
+            {showForm && (
+                <FlashcardForm
+                    initial={editing ?? undefined}
+                    onSave={addOrUpdateCard}
+                    onCancel={() => { setShowForm(false); setEditing(null); }}
+                />
+            )}
+
+            <FlashcardList
+                cards={filteredCards}
+                onToggleLearned={toggleLearned}
+                onEdit={handleEdit}
+                onDelete={deleteCard}
             />
-        </div>
-
-        <ProgressBar value={learnedRatio} />
-
-        {showForm && (
-            <FlashcardForm
-            initial={editing ?? undefined}
-            onSave={addOrUpdateCard}
-            onCancel={() => { setShowForm(false); setEditing(null); }}
-            />
-        )}
-
-        <FlashcardList
-            cards={filteredCards}
-            onToggleLearned={toggleLearned}
-            onEdit={handleEdit}
-            onDelete={deleteCard}
-        />
         </div>
     );
 }

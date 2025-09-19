@@ -8,12 +8,11 @@ type FlashcardFormProps = {
     onCancel?: () => void;
 };
 
-
 function FlashcardForm({ initial = {}, onSave, onCancel }: FlashcardFormProps) {
     const [question, setQuestion] = useState(initial.question ?? "");
     const [answer, setAnswer] = useState(initial.answer ?? "");
     const [topic, setTopic] = useState(initial.topic ?? "General");
-    const [color, setColor] = useState(initial.color ?? "#7aa2ff");
+    const [color, setColor] = useState(initial.color ?? "#caa336ff");
 
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -25,7 +24,7 @@ function FlashcardForm({ initial = {}, onSave, onCancel }: FlashcardFormProps) {
 
 
         onSave({
-            id: (initial as any).id,
+            id: (initial as Flashcard).id,
             question: question.trim(),
             answer: answer.trim(),
             topic: topic.trim(),
@@ -65,7 +64,7 @@ function FlashcardForm({ initial = {}, onSave, onCancel }: FlashcardFormProps) {
                 <button type="submit">Save</button>
                 {onCancel && (
                 <button type="button" className="btn-secondary" onClick={onCancel}>
-                Cancel
+                    Cancel
                 </button>
                 )}
             </div>

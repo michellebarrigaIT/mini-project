@@ -42,7 +42,7 @@ function FlashcardCard({ card, onToggleLearned, onEdit, onDelete }: FlashcardCar
                 <button onClick={() => onToggleLearned(card.id)}>{card.learned ? 'Mark Need Revision' : 'Mark Learned'}</button>
                 <button onClick={() => onEdit(card)}>Edit</button>
                 <button className="btn-danger" onClick={() => {
-                    if (confirm('Delete this card?')) onDelete(card.id);
+                    onDelete(card.id);
                 }}>Delete</button>
             </div>
         </div>

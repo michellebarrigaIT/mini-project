@@ -14,11 +14,11 @@ function FlashcardList({
     onEdit: (card: Flashcard) => void;
     onDelete: (id: string) => void;
     view?: 'grid' | 'list';
-    }) {
+}) {
     return (
         <div className={`flashcard-list ${view}`}>
             {cards.map((c) => (
-            <FlashcardCard key={c.id} card={c} onToggleLearned={onToggleLearned} onEdit={onEdit} onDelete={onDelete} />
+                <FlashcardCard key={c.id} card={c} onToggleLearned={onToggleLearned} onEdit={onEdit} onDelete={onDelete} />
             ))}
         </div>
     );
