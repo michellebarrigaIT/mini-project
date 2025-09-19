@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import "./ToggleButton.scss"
-import Dashboard from "../../pages/Dashboard/Dashboard";
-import Study from "../../pages/Study/Study";
 import { Link } from "react-router-dom";
 
 function ToggleButton() {
