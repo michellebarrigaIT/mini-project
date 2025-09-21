@@ -6,6 +6,7 @@ import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import FlashcardCard from "../../components/FlashcardCard/FlashcardCard";
 import "./Study.scss"
 import Timer from "../../components/Timer/Timer";
+import { TbCards } from "react-icons/tb";
 
 function Study() {
   const [flashcards, setFlashcards] = useLocalStorage<Flashcard[]>("flashcards", []);
@@ -54,7 +55,7 @@ function Study() {
 
       {!shuffled && flashcards.length > 1 && (
         <button className="shuffle-btn" onClick={handleShuffle}>
-          Shuffle Deck
+          <TbCards />
         </button>
       )}
 
