@@ -4,6 +4,7 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 import type { Flashcard } from "../../types/Flashcard";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import FlashcardCard from "../../components/FlashcardCard/FlashcardCard";
+import "./Study.scss"
 
 function Study() {
   const [flashcards, setFlashcards] = useLocalStorage<Flashcard[]>("flashcards", []);
@@ -14,7 +15,7 @@ function Study() {
 
   const handleToggleLearned = (id: string) => {
     setFlashcards(prev =>
-      prev.map(c => (c.id === id ? { ...c, learned: !c.learned } : c))
+      prev.map(flashcard => (flashcard.id === id ? { ...flashcard, learned: !flashcard.learned } : flashcard))
     );
   };
 
@@ -28,7 +29,7 @@ function Study() {
   };
 
   const progress = flashcards.length
-    ? (flashcards.filter(c => c.learned).length / flashcards.length) * 100
+    ? (flashcards.filter(flashcard => flashcard.learned).length / flashcards.length) * 100
     : 0;
 
   const nextCard = () => {
@@ -62,10 +63,11 @@ function Study() {
             onToggleLearned={handleToggleLearned}
             onEdit={() => {}}
             onDelete={() => {}}
+            mode="study"
           />
           <div className="study-nav">
             <button onClick={prevCard} disabled={currentIndex === 0}>
-              Previous
+              {'<<'}
             </button>
             <span>
               {currentIndex + 1} / {flashcards.length}
@@ -74,7 +76,7 @@ function Study() {
               onClick={nextCard}
               disabled={currentIndex === flashcards.length - 1}
             >
-              Next
+              {'>>'}
             </button>
           </div>
         </div>

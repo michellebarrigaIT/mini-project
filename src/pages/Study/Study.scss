@@ -2,8 +2,8 @@
 
 .container {
     padding: 20px;
-    width: 70vw;
-    height: auto;
+    width: 90vw;
+    height: 90vh;
     margin: 0 auto;
     background-color: variable.$bg-color-dark;
     text-align: center;
@@ -32,16 +32,34 @@
         }
     }
 
-    .dashboard-controls {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 20px;
+    .study-card {
+        margin: 0 auto;
+        margin-top: 20px;
+        perspective: 1000px;
 
-        @media (min-width: 600px) {
-            flex-direction: row;
-            justify-content: center;
+        .no-cards {
+            color: variable.$text-color;
+        }
+
+        @media (max-width: 500px) {
+            width: 100%;
+            height: auto;
+        }
+
+        button {
+            background-color: variable.$btn-color;
+            color: variable.$text-color;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: variable.$btn-color-hover;
+            }
         }
     }
 }

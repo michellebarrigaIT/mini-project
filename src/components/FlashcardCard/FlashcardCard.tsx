@@ -7,15 +7,25 @@ type FlashcardCardProps = {
     onToggleLearned: (id: string) => void;
     onEdit: (card: Flashcard) => void;
     onDelete: (id: string) => void;
+    mode?: "dashboard" | "study";
 };
 
 
-function FlashcardCard({ card, onToggleLearned, onEdit, onDelete }: FlashcardCardProps) {
+function FlashcardCard({ 
+    card, 
+    onToggleLearned, 
+    onEdit, 
+    onDelete,
+    mode = "dashboard"
+}: FlashcardCardProps) {
     const [flipped, setFlipped] = useState(false);
 
 
     return (
-        <div className={`flashcard ${flipped ? 'flipped' : ''}`} style={{ borderColor: card.color }}>
+        <div 
+            className={`flashcard ${flipped ? "flipped" : ""} ${mode === "study" ? "study-mode" : ""}`} 
+            style={{ borderColor: card.color }}
+        >
             <div className="card-inner" onClick={() => setFlipped((s) => !s)}>
                 <div className="card-front">
                     <div className="card-header">
@@ -39,11 +49,16 @@ function FlashcardCard({ card, onToggleLearned, onEdit, onDelete }: FlashcardCar
 
 
             <div className="card-footer">
-                <button onClick={() => onToggleLearned(card.id)}>{card.learned ? 'Mark Need Revision' : 'Mark Learned'}</button>
-                <button onClick={() => onEdit(card)}>Edit</button>
-                <button className="btn-danger" onClick={() => {
-                    onDelete(card.id);
-                }}>Delete</button>
+                <button onClick={() => onToggleLearned(card.id)}>
+                    {card.learned ? "Mark Need Revision" : "Mark Learned"}
+                </button>
+
+                {mode === "dashboard" && (
+                    <>
+                        <button onClick={() => onEdit?.(card)}>Edit</button>
+                        <button className="btn-danger" onClick={() => onDelete?.(card.id)}>Delete</button>
+                    </>
+                )}
             </div>
         </div>
     );
