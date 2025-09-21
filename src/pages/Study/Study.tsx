@@ -29,7 +29,7 @@ function Study() {
   };
 
   const progress = flashcards.length
-    ? (flashcards.filter(flashcard => flashcard.learned).length / flashcards.length) * 100
+    ? ((currentIndex + 1) / flashcards.length) * 100
     : 0;
 
   const nextCard = () => {
