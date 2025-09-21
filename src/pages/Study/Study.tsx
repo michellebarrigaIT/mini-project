@@ -47,9 +47,9 @@ function Study() {
   
   return (
     <div className="container">
-      <Timer />
       <ToggleButton/>
       <h1>Study Mode</h1>
+      <Timer />
       <ProgressBar value={progress} />
 
       {!shuffled && flashcards.length > 1 && (
@@ -67,7 +67,7 @@ function Study() {
             onDelete={() => {}}
             mode="study"
           />
-          <div className="study-nav">
+          <div>
             <button onClick={prevCard} disabled={currentIndex === 0}>
               {'<<'}
             </button>

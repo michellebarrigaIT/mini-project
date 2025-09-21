@@ -9,11 +9,11 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    color: variable.$text-color;
 
     h1 {
         text-align: center;
         margin-bottom: 20px;
-        color: variable.$text-color;
     }
 
     button {
@@ -36,10 +36,6 @@
         margin: 0 auto;
         margin-top: 20px;
         perspective: 1000px;
-
-        .no-cards {
-            color: variable.$text-color;
-        }
 
         @media (max-width: 500px) {
             width: 100%;
