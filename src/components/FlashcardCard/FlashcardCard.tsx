@@ -36,7 +36,7 @@ function FlashcardCard({
                         <p className="question">{card.question}</p>
                     </div>
                 </div>
-                <div className="card-back">
+                <div className={`card-back ${mode === "study" ? "study-mode" : ""}`}>
                     <div className="card-header">
                         <span className="topic-tag" style={{ background: card.color }}>{card.topic}</span>
                         <span className="learned-status">{card.learned ? 'Learned' : 'Not learned'}</span>
