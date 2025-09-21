@@ -1,24 +1,27 @@
 @use "../../assets/styles/variables.scss" as variable;
 
 .toggle-button {
-    border: 1px solid black;
+    display: flex;
     border-radius: 50px;
     background-color: variable.$btn-color;
     width: 15vw;
     height: 4vh;
-    display: flex;
-    justify-content: space-between;
+    overflow: hidden;
 
-    button {
+    .toggle-link {
         flex: 1;
-        border-radius: 50px;
-        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: white;
         background: transparent;
-        color: variable.$text-color;
+        border: none;
         cursor: pointer;
-    }
+        transition: background-color 0.3s ease;
 
-    .active {
-        background-color: variable.$btn-color-hover;
+        &.active {
+            background-color: variable.$btn-color-hover;
+        }
     }
 }

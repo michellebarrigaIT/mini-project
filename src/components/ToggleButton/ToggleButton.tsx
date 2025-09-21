@@ -1,27 +1,24 @@
-import { useState } from "react"
 import "./ToggleButton.scss"
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function ToggleButton() {
-    const [isStudyMode, setIsStudyMode] = useState<boolean>(false);
+    const location = useLocation();
+    const isStudyMode = location.pathname === "/study-mode";
 
     return (
         <div className="toggle-button">
-            <button
-                onClick={() => { setIsStudyMode(false)}} 
+            <Link
+                to="/"
+                className={`toggle-link ${!isStudyMode ? "active" : ""}`}
             >
-                <Link to="/" className={`right ${isStudyMode ? "active" : ""}`}>
-                    Dashboard
-                </Link>
-            </button>
-            <button
-                className={`left ${isStudyMode ? "active" : ""}`}
-                onClick={() => { setIsStudyMode(true)}}
+                Dashboard
+            </Link>
+            <Link
+                to="/study-mode"
+                className={`toggle-link ${isStudyMode ? "active" : ""}`}
             >
-                <Link to="/study-mode" className={`right ${isStudyMode ? "active" : ""}`}>
-                    Study Mode
-                </Link>
-            </button>
+                Study Mode
+            </Link>
         </div>
     )
 }
