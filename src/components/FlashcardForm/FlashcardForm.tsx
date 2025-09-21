@@ -53,7 +53,7 @@ function FlashcardForm({ initial = {}, onSave, onCancel }: FlashcardFormProps) {
             <label>
                 Answer *
                 <textarea 
-                    {...register("answer", { required: "Answer is required", minLength: { value: 10, message: "Min length is 10 characters" }})} 
+                    {...register("answer", { required: "Answer is required", minLength: { value: 10, message: "Min length is 10 characters" }, maxLength: { value: 500, message: "Max length is 250 characters" } })} 
                 />
                     {errors.answer && <span className="error">{errors.answer.message}</span>}
             </label>

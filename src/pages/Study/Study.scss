@@ -33,15 +33,6 @@
     }
 
     .study-card {
-        margin: 0 auto;
-        margin-top: 20px;
-        perspective: 1000px;
-
-        @media (max-width: 500px) {
-            width: 100%;
-            height: auto;
-        }
-
         button {
             background-color: variable.$btn-color;
             color: variable.$text-color;

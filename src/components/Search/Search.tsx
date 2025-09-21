@@ -16,7 +16,7 @@ function Search({
     return (
         <div className="search">
             <input placeholder="Search question or answer..." value={toSearch} onChange={(e) => setToSearch(e.target.value)} />
-            <select value={topic} onChange={(e) => setTopic(e.target.value as any)}>
+            <select value={topic} onChange={(e) => setTopic(e.target.value)}>
                 <option value="all">All topics</option>
                 {topics.map((t) => (
                     <option key={t} value={t}>{t}</option>

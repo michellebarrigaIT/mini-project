@@ -20,11 +20,9 @@ function FlashcardCard({
 }: FlashcardCardProps) {
     const [flipped, setFlipped] = useState(false);
 
-
     return (
         <div 
-            className={`flashcard ${flipped ? "flipped" : ""} ${mode === "study" ? "study-mode" : ""}`} 
-            style={{ borderColor: card.color }}
+            className={`flashcard ${flipped ? "flipped" : ""} ${mode === "study" ? "study-mode" : ""}`}
         >
             <div className="card-inner" onClick={() => setFlipped((s) => !s)}>
                 <div className="card-front">
@@ -36,7 +34,7 @@ function FlashcardCard({
                         <p className="question">{card.question}</p>
                     </div>
                 </div>
-                <div className={`card-back ${mode === "study" ? "study-mode" : ""}`}>
+                <div className="card-back">
                     <div className="card-header">
                         <span className="topic-tag" style={{ background: card.color }}>{card.topic}</span>
                         <span className="learned-status">{card.learned ? 'Learned' : 'Not learned'}</span>
