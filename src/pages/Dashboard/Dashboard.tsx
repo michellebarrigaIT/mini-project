@@ -7,6 +7,7 @@ import "./Dashboard.scss";
 import Search from "../../components/Search/Search";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import ToggleButton from "../../components/ToggleButton/ToggleButton";
+import { IoMdAddCircleOutline } from "react-icons/io";
 
 function Dashboard() {
     const [flashcards, setFlashcards] = useLocalStorage<Flashcard[]>("flashcards", []);
@@ -66,7 +67,7 @@ function Dashboard() {
             <h1>Flashcards Dashboard</h1>
             <div className="dashboard-controls">
                 <button onClick={() => { setShowForm(true); setEditing(null); }}>
-                    + Add Flashcard
+                    <IoMdAddCircleOutline />
                 </button>
 
                 <Search
