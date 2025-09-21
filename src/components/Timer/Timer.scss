@@ -1,0 +1,13 @@
+@use "../../assets/styles/variables.scss" as variable;
+
+.timer {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: variable.$text-color;
+    background-color: variable.$bg-color-card;
+    padding: 6px 12px;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 10px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}

@@ -5,6 +5,7 @@ import type { Flashcard } from "../../types/Flashcard";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import FlashcardCard from "../../components/FlashcardCard/FlashcardCard";
 import "./Study.scss"
+import Timer from "../../components/Timer/Timer";
 
 function Study() {
   const [flashcards, setFlashcards] = useLocalStorage<Flashcard[]>("flashcards", []);
@@ -46,6 +47,7 @@ function Study() {
   
   return (
     <div className="container">
+      <Timer />
       <ToggleButton/>
       <h1>Study Mode</h1>
       <ProgressBar value={progress} />
