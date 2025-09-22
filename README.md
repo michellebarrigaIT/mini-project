@@ -22,6 +22,8 @@ src/
 │ └─ Timer
 │     └─ Timer.tsx
 │     └─ Timer.scss
+├── hooks/
+│     └─ useLocalStorage.ts
 ├── pages/
 │ └─ DashBoard
 │     └─ DashBoard.tsx
