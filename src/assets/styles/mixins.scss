@@ -1,0 +1,28 @@
+@use "./variables.scss" as variable;
+
+@mixin button-style() {
+    background-color: variable.$btn-color;
+    color: variable.$text-color;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: variable.$btn-color-hover;
+    }
+}
+
+@mixin container($width, $height: auto) {
+    padding: 20px;
+    width: $width;
+    height: $height;
+    margin: 0 auto;
+    background-color: variable.$bg-color-dark;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
