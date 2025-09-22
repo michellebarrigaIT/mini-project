@@ -7,7 +7,6 @@
     height: 250px;
     perspective: 1000px;
     flex: 1 1 280px; 
-    font-size: clamp(1rem, 2.5vw, 1.4rem); 
     font-size: 0.95rem;
 
     &.flipped .card-inner {
@@ -15,14 +14,13 @@
     }
 
     &.study-mode {
-        flex: none;
         width: 900px;
         height: 400px;
         margin: 0 auto;
-        font-size: clamp(1rem, 2.5vw, 1.4rem); 
         font-size: 2rem;
+
         @media (max-width: 950px) {
-            width: 100%;
+            width: 90%;
             height: 350px;
             font-size: 1rem;
         }
@@ -127,8 +125,8 @@
 }
 
 @media (max-width: 600px) {
-  .flashcard.study-mode {
-    max-width: 100%;
-    height: 320px;
-  }
+    .flashcard.study-mode {
+        max-width: 100%;
+        height: 320px;
+    }
 }
